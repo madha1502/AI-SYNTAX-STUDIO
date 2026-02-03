@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VSBEC Kanal 2026</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:#05070d;
+    color:white;
+}
+
+/* ===== GRID BACKGROUND ===== */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(#0ff2 1px, transparent 1px),
+    linear-gradient(90deg, #0ff2 1px, transparent 1px);
+    background-size:60px 60px;
+    animation: gridMove 8s linear infinite;
+    z-index:-2;
+}
+
+@keyframes gridMove{
+    from{background-position:0 0;}
+    to{background-position:60px 60px;}
+}
+
+/* ===== PARTICLES ===== */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* ===== MOVING COLLEGE LOGO ===== */
+.college-logo{
+    position:fixed;
+    top:50px;
+    left:20px;
+    width:12vw;
+    max-width:180px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #00ffff);
+    animation: zigzag1 7s ease-in infinite;
+}
+
+@keyframes zigzag1{
+    0%   { transform: translate(0,0); }
+    25%  { transform: translate(8px,-10px); }
+    50%  { transform: translate(-6px,6px); }
+    75%  { transform: translate(10px,8px); }
+    100% { transform: translate(0,0); }
+}
+
+.kanal-logo{
+    position:fixed;
+    bottom:50px;
+    right:30px;
+    width:230px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #ff00ff);
+    shadow:0 0 30px #00ffff, 0 0 30px #ff00ff;
+    animation: zigzag1 7s ease-in infinite;
+}
+
+.center-logo{
+    width:450px;
+    filter: drop-shadow(0 0 30px #00ffff);
+}
+
+/* ===== DEPARTMENT NAME TOP CENTER ===== */
+.dept-name{
+    position:fixed;
+    top:40px;                 /* sits above diamond */
+    left:50%;
+    transform:translateX(-50%);
+    font-size:32px;
+    letter-spacing:3px;
+    color:#dee6f1;
+    text-align:center;
+    text-shadow:0 0 20px #00ffff, 0 0 40px #ff00ff;
+    z-index:5;
+    font-weight:600;
+}
+
+/* ===== LOGIN BUTTON TOP RIGHT ===== */
+.login-btn{
+    position:fixed;
+    top:80px;
+    right:105px;
+    padding:10px 22px;
+    border:2px solid #00ffff;
+    color:#00ffff;
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:1px;
+    border-radius:6px;
+    z-index:10;
+    transition:0.3s;
+    box-shadow:0 0 10px #00ffff;
+    filter: drop-shadow(0 0 10px #ff00ff);
+    shadow:0 0 30px #00ffff, 0 0 30px #ff00ff;
+    animation: floatLogo 4s ease-in-out infinite;
+}
+
+.login-btn:hover{
+    background:#00ffff;
+    color:#05070d;
+    box-shadow:0 0 25px #00ffff;
+}
+
+.tagline{
+    position:fixed;
+    bottom:30px;
+    width:100%;
+    text-align:center;
+    color:#7df9ff;
+    letter-spacing:4px;
+    text-shadow:0 0 15px #00ffff;
+}
+
+/* ===== BOTTOM LEFT CONTACT INFO ===== */
+.contact-info{
+    position:fixed;
+    bottom:70px;
+    left:40px;
+    color:#eaf5f6;
+    font-size:16px;
+    letter-spacing:1px;
+    line-height:1.9;
+    text-shadow:0 0 12px #00ffff;
+    opacity:0.9;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #ff00ff);
+    shadow:0 0 30px #00ffff, 0 0 30px #ff00ff;
+    animation: floatLogo 4s ease-in-out infinite;
+}
+
+.contact-info div{
+    margin-bottom:6px;
+}
+
+
+@keyframes floatLogo{
+    0%{ transform: translateY(0px); }
+    50%{ transform: translateY(-12px); }
+    100%{ transform: translateY(0px); }
+}
+
+/* ===== CENTER DIAMOND ===== */
+.diamond{
+    position:absolute;
+    top:55%;
+    left:50%;
+    width:320px;
+    height:320px;
+    transform:translate(-50%,-50%) rotate(45deg);
+    border:4px solid transparent;
+    border-image:linear-gradient(45deg, #ff00ff, #00ffff) 1;
+    box-shadow:0 0 40px #00ffff, 0 0 60px #ff00ff;
+    animation: glow 3s ease-in-out infinite alternate,
+               spin 25s linear infinite;
+}
+
+@keyframes spin{
+    from{ transform:translate(-50%,-50%) rotate(45deg); }
+    to{ transform:translate(-50%,-50%) rotate(405deg); }
+}
+
+@keyframes glow{
+    from{ box-shadow:0 0 30px #00ffff; }
+    to{ box-shadow:0 0 80px #ff00ff; }
+}
+
+/* ===== TEXT ===== */
+.content{
+    position:absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+
+.title{
+    font-size:60px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-shadow:0 0 15px #00ffff;
+}
+
+.subtitle{
+    font-size:28px;
+    margin-top:10px;
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- College Logo -->
+<img src="college-logo.png" class="college-logo" alt="VSBEC Logo">
+<img src="kanal-logo.png" class="kanal-logo" alt="VSBEC Logo">
+
+<canvas id="particles"></canvas>
+
+<div class="diamond"></div>
+
+<div class="content">
+    <img src="logo.png" class="center-logo" alt="Kanal Logo">
+</div>
+
+<div class="dept-name">
+Department of Artificial Intelligence and Data Science
+</div>
+
+<a href="login.html" class="login-btn">LOGIN</a>
+
+<div class="tagline">Innovate • Prompt • Create</div>
+
+<div class="contact-info">
+    <div>Instagram : @vsbec_ai_ds</div>
+    <div>Email : aids@vsbec.ac.in</div>
+</div>
+
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<120;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        size: Math.random()*3,
+        speedX: (Math.random()-0.5)*1,
+        speedY: (Math.random()-0.5)*1
+    });
+}
+
+function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#00ffff";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if(p.x<0||p.x>canvas.width) p.speedX*=-1;
+        if(p.y<0||p.y>canvas.height) p.speedY*=-1;
+    });
+    requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+window.addEventListener('resize',()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
