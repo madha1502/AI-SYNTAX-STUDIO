@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Round 1 – Prompt Image Generation</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:#05070d;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+/* Grid background */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      linear-gradient(#00ffff22 1px, transparent 1px),
+      linear-gradient(90deg, #00ffff22 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-1;
+}
+
+h1{
+    color:#7df9ff;
+    text-shadow:0 0 20px #00ffff;
+    letter-spacing:3px;
+}
+
+.prompt-box{
+    margin-top:40px;
+}
+.center-logo{
+    width:350px;
+    filter: drop-shadow(0 0 30px #00ffff);
+}
+.college-logo{
+        width:170px;
+    position:fixed;
+    top:50px;
+    left:20px;
+    width:12vw;
+    max-width:180px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #00ffff);
+    animation: zigzag1 7s ease-in infinite;
+}
+@keyframes zigzag1{
+    0%   { transform: translate(0,0); }
+    25%  { transform: translate(8px,-10px); }
+    50%  { transform: translate(-6px,6px); }
+    75%  { transform: translate(10px,8px); }
+    100% { transform: translate(0,0); }
+}
+.kanal-logo{
+    position:fixed;
+    top:50px;
+    right:20px;
+    width:230px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #ff00ff);
+    shadow:0 0 30px #00ffff, 0 0 30px #ff00ff;
+    animation: zigzag1 7s ease-in infinite;
+}
+
+input{
+    width:70%;
+    max-width:600px;
+    padding:15px;
+    border-radius:8px;
+    border:1px solid #00ffff;
+    background:#0a0f1c;
+    color:white;
+    font-size:16px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 30px;
+    background:#00bfff;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 0 15px #00ffff;
+}
+
+img{
+    margin-top:30px;
+    max-width:70%;
+    border-radius:12px;
+}
+/* ===== PARTICLE CANVAS ===== */
+#particles{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+</style>
+</head>
+
+<body>
+
+<img src="college-logo.png" class="college-logo" alt="VSBEC Logo">
+<h1>ROUND 1</h1>
+<h2>PROMPT IMAGE GENERATION</h2>
+<div class="content">
+    <img src="logo.png" class="center-logo" alt="Kanal Logo">
+</div>
+<div class="prompt-box">
+    <input id="prompt" placeholder="Enter your prompt here...">
+    <br>
+    <button onclick="generateImage()">Generate Image</button>
+</div>
+
+<div id="result"></div>
+<img src="kanal-logo.png" class="kanal-logo" alt="VSBEC Logo">
+<canvas id="particles"></canvas>
+<script>
+async function generateImage(){
+    const prompt = document.getElementById("prompt").value;
+    const result = document.getElementById("result");
+
+    result.innerHTML = "Generating image...";
+
+    const res = await fetch("/api/generate", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({prompt})
+    });
+
+    const data = await res.json();
+    result.innerHTML = `<img src="${data.image}" />`;
+}
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let particles = [];
+const count = 120;
+
+for(let i=0;i<count;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        size: Math.random()*2 + 1,
+        speedX: (Math.random()-0.5)*0.8,
+        speedY: (Math.random()-0.5)*0.8
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fillStyle = "#00ffff";
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // bounce from edges
+        if(p.x<0 || p.x>canvas.width) p.speedX *= -1;
+        if(p.y<0 || p.y>canvas.height) p.speedY *= -1;
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+
+</body>
+</html>

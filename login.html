@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Syntax Studio – Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#05070d;
+    color:white;
+    padding:60px 8%;
+}
+
+/* ===== GRID BACKGROUND ===== */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+      linear-gradient(#00ffff22 1px, transparent 1px),
+      linear-gradient(90deg, #00ffff22 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-1;
+}
+
+/* ===== TITLE ===== */
+.page-title{
+    text-align:center;
+    font-size:38px;
+    letter-spacing:3px;
+    color:#7df9ff;
+    text-shadow:0 0 20px #00ffff;
+    margin-bottom:50px;
+}
+
+/* ===== FORM GRID ===== */
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px 50px;
+}
+
+/* ===== LABEL ===== */
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#7df9ff;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+/* ===== INPUTS ===== */
+input, select{
+    width:100%;
+    padding:16px;
+    border-radius:10px;
+    border:1px solid #0ff5;
+    background:#0a0f1c;
+    color:white;
+    font-size:16px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus, select:focus{
+    border:1px solid #00ffff;
+    box-shadow:0 0 15px #00ffff;
+}
+
+/* ===== BUTTON ===== */
+.btn-wrap{
+    text-align:center;
+    margin-top:60px;
+}
+
+.start-btn{
+    padding:18px 60px;
+    font-size:20px;
+    letter-spacing:2px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    background:linear-gradient(45deg,#00bfff,#005eff);
+    box-shadow:0 0 25px #00ffff;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.start-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px #00ffff;
+}
+
+.kanal-logo{
+    position:fixed;
+    top:30px;
+    right:30px;
+    width:230px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #ff00ff);
+    shadow:0 0 30px #00ffff, 0 0 30px #ff00ff;
+    animation: zigzag1 7s ease-in infinite;
+}
+
+.college-logo{
+    position:fixed;
+    top:27px;
+    left:20px;
+    width:12vw;
+    max-width:180px;
+    z-index:5;
+    filter: drop-shadow(0 0 10px #00ffff);
+    animation: zigzag1 7s ease-in infinite;
+}
+
+@keyframes zigzag1{
+    0%   { transform: translate(0,0); }
+    25%  { transform: translate(8px,-10px); }
+    50%  { transform: translate(-6px,6px); }
+    75%  { transform: translate(10px,8px); }
+    100% { transform: translate(0,0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ================= MOBILE FIX ================= */
+@media (max-width: 768px){
+
+    body{
+        padding:20px;
+        overflow-x:hidden;
+    }
+
+    /* Department name */
+    .dept-name{
+        font-size:18px;
+        top:70px;
+        width:90%;
+        line-height:1.4;
+        text-align:center;
+    }
+
+    /* College logo */
+    .college-logo{
+        width:70px;
+        top:15px;
+        left:15px;
+    }
+
+    /* Login button */
+    .login-btn{
+        top:15px;
+        right:15px;
+        padding:8px 14px;
+        font-size:14px;
+    }
+
+    /* Kanal logo (right side) */
+    .kanal-logo{
+        width:90px;
+        right:15px;
+        top:60%;
+    }
+
+    /* Diamond */
+    .diamond{
+        width:260px;
+        height:260px;
+    }
+
+    /* Center logo */
+    .center-logo{
+        width:220px;
+    }
+
+    /* Tagline */
+    .tagline{
+        font-size:14px;
+        bottom:20px;
+        letter-spacing:2px;
+    }
+
+    /* Contact info bottom left */
+    .contact-info{
+        font-size:12px;
+        left:20px;
+        bottom:20px;
+        line-height:1.6;
+    }
+
+    /* Login page form */
+    .form-grid{
+        grid-template-columns:1fr !important;
+        gap:20px;
+    }
+
+    .page-title{
+        font-size:24px;
+        margin-bottom:30px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-title">Participant Details</div>
+
+<form id="userForm">
+
+<div class="form-grid">
+
+<div>
+    <label>Name *</label>
+    <input type="text" placeholder="Enter your name" required>
+</div>
+
+<div>
+    <label>Email *</label>
+    <input type="email" placeholder="Enter your email" required>
+</div>
+
+<div>
+    <label>Year *</label>
+    <select required>
+        <option value="">Select Year</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>4th Year</option>
+    </select>
+</div>
+
+<div>
+    <label>Department *</label>
+    <input type="text" placeholder="Enter your department" required>
+</div>
+
+<div>
+    <label>College *</label>
+    <input type="text" placeholder="Enter your college" required>
+</div>
+
+<div>
+    <label>Phone Number *</label>
+    <input type="tel" placeholder="Enter your phone number" required>
+</div>
+
+</div>
+
+<div class="btn-wrap">
+    <button type="submit" class="start-btn">START EXPERIENCE →</button>
+</div>
+
+<img src="kanal-logo.png" class="kanal-logo" alt="VSBEC Logo">
+<img src="college-logo.png" class="college-logo" alt="VSBEC Logo">
+
+</form>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzKaLQuIt1-jQaBjEkHcmco-bFwAlRJ0Ycc_JhXN8bDorH5S6dC6C_T28YzbVqRrx1m/exec";
+
+document.getElementById("userForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const data = {
+        name: e.target[0].value,
+        email: e.target[1].value,
+        year: e.target[2].value,
+        department: e.target[3].value,
+        college: e.target[4].value,
+        phone: e.target[5].value
+    };
+
+    await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+
+    alert("Details submitted successfully!");
+    window.location.href = "round1.html";
+});
+</script>
+
+</body>
+</html>
