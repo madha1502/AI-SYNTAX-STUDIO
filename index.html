@@ -209,82 +209,76 @@ canvas{
     opacity:0.9;
 }
 
-     /* ================= MOBILE FIX ================= */
-@media (max-width: 768px){
+    /* ================= PERFECT MOBILE LAYOUT ================= */
+@media (max-width:768px){
 
     body{
-        padding:20px;
+        padding:15px;
         overflow-x:hidden;
-    }
-
-    /* Department name */
-    .dept-name{
-        font-size:18px;
-        top:70px;
-        width:90%;
-        line-height:1.4;
-        text-align:center;
     }
 
     /* College logo */
     .college-logo{
-        width:70px;
-        top:15px;
-        left:15px;
+        width:60px;
+        top:10px;
+        left:10px;
     }
 
     /* Login button */
     .login-btn{
-        top:15px;
-        right:15px;
-        padding:8px 14px;
-        font-size:14px;
+        top:10px;
+        right:10px;
+        padding:6px 12px;
+        font-size:12px;
     }
 
-    /* Kanal logo (right side) */
-    .kanal-logo{
-        width:90px;
-        right:15px;
-        top:60%;
+    /* Department name */
+    .dept-name{
+        top:80px;
+        font-size:16px;
+        width:95%;
+        line-height:1.3;
+        text-align:center;
     }
 
-    /* Diamond */
+    /* DIAMOND becomes smaller and centered */
     .diamond{
-        width:260px;
-        height:260px;
+        width:220px;
+        height:220px;
+        top:48%;
+        left:50%;
+        transform:translate(-50%,-50%) rotate(45deg);
     }
 
     /* Center logo */
     .center-logo{
-        width:220px;
+        width:170px;
+    }
+
+    /* Kanal logo moves to bottom-right corner */
+    .kanal-logo{
+        width:70px;
+        bottom:120px;
+        right:15px;
+        top:auto;
+    }
+
+    /* Contact info */
+    .contact-info{
+        font-size:12px;
+        left:15px;
+        bottom:70px;
+        line-height:1.5;
     }
 
     /* Tagline */
     .tagline{
-        font-size:14px;
-        bottom:20px;
+        bottom:25px;
+        font-size:12px;
         letter-spacing:2px;
     }
-
-    /* Contact info bottom left */
-    .contact-info{
-        font-size:12px;
-        left:20px;
-        bottom:20px;
-        line-height:1.6;
-    }
-
-    /* Login page form */
-    .form-grid{
-        grid-template-columns:1fr !important;
-        gap:20px;
-    }
-
-    .page-title{
-        font-size:24px;
-        margin-bottom:30px;
-    }
 }
+
 </style>
 </head>
 
@@ -362,4 +356,5 @@ window.addEventListener('resize',()=>{
 
 </body>
 </html>
+
 
